@@ -1,0 +1,102 @@
+# ============================================================
+#  AquaVida — .htaccess
+#  Apache / XAMPP
+# ============================================================
+
+# ── Deshabilitar listado de directorios ──────────────────────
+Options -Indexes
+
+# ── Codificación por defecto ─────────────────────────────────
+AddDefaultCharset UTF-8
+
+# ── Reescritura de URLs (URLs limpias sin .html) ─────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /Acuario/
+
+  # Ignorar archivos y carpetas que existen físicamente
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Intentar agregar .html si el archivo existe
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^([^/]+)/?$ $1.html [NC,L]
+
+  # Redirección /catalogo → /catalogo.html
+  # (ya cubierta por la regla anterior)
+</IfModule>
+
+# ── Proteger archivos sensibles ──────────────────────────────
+<FilesMatch "(^\.htaccess|^\.htpasswd|supabase-setup\.sql|config\.js)$">
+  # config.js necesita ser público para el navegador,
+  # comenta la línea de abajo si quieres protegerlo solo en prod
+  # Order Allow,Deny
+  # Deny from all
+</FilesMatch>
+
+# Bloquear acceso al SQL de setup (nunca debe ser público)
+<Files "supabase-setup.sql">
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+# Ocultar archivos ocultos del sistema
+<FilesMatch "^\.">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# ── Encabezados de seguridad ─────────────────────────────────
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options  "nosniff"
+  Header always set X-Frame-Options         "SAMEORIGIN"
+  Header always set X-XSS-Protection        "1; mode=block"
+  Header always set Referrer-Policy         "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy      "geolocation=(), camera=(), microphone=()"
+</IfModule>
+
+# ── Caché de archivos estáticos ──────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Imágenes — 1 mes
+  ExpiresByType image/png          "access plus 1 month"
+  ExpiresByType image/jpeg         "access plus 1 month"
+  ExpiresByType image/gif          "access plus 1 month"
+  ExpiresByType image/webp         "access plus 1 month"
+  ExpiresByType image/svg+xml      "access plus 1 month"
+  ExpiresByType image/x-icon       "access plus 1 month"
+
+  # Fuentes — 1 mes
+  ExpiresByType font/woff2         "access plus 1 month"
+  ExpiresByType font/woff          "access plus 1 month"
+
+  # CSS y JS — 1 semana
+  ExpiresByType text/css           "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+
+  # HTML — sin caché agresiva
+  ExpiresByType text/html          "access plus 1 hour"
+</IfModule>
+
+# ── Compresión Gzip ──────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ── Tipos MIME correctos ─────────────────────────────────────
+<IfModule mod_mime.c>
+  AddType application/javascript    .js
+  AddType text/css                  .css
+  AddType image/webp                .webp
+  AddType font/woff2                .woff2
+</IfModule>
+
+# ── Páginas de error personalizadas ─────────────────────────
+ErrorDocument 404 /Acuario/index.html
+ErrorDocument 403 /Acuario/index.html

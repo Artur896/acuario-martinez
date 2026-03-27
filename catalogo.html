@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo — Acuario Martinez</title>
+  <meta name="description" content="Explora todo nuestro catálogo: peces tropicales, plantas acuáticas y accesorios para tu acuario." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body class="catalog-page loading">
+
+  <!-- ==================== PANTALLA DE CARGA ==================== -->
+  <div id="loader" class="loader">
+    <div class="loader__rays">
+      <div class="lray lray-1"></div>
+      <div class="lray lray-2"></div>
+      <div class="lray lray-3"></div>
+    </div>
+    <div class="loader__content">
+      <div class="loader__tank-wrap">
+        <div class="loader__tank" id="loaderTank">
+          <div class="loader__glass-shine"></div>
+          <div class="loader__water" id="loaderWater">
+            <div class="lwave lwave-1"></div>
+            <div class="lwave lwave-2"></div>
+            <span class="tb tb1"></span><span class="tb tb2"></span>
+            <span class="tb tb3"></span><span class="tb tb4"></span>
+            <span class="tb tb5"></span><span class="tb tb6"></span>
+            <span class="lfish lfish-1">🐠</span>
+            <span class="lfish lfish-2">🐟</span>
+          </div>
+          <div class="loader__sand"><span>🪸</span><span>🌿</span><span>🪸</span></div>
+        </div>
+        <div class="loader__stand"></div>
+      </div>
+      <div class="loader__brand">
+        <span class="loader__logo-fish">🐠</span>
+        <span>Acuario<strong>Martinez</strong> — <span style="font-size:.65em;font-weight:400;color:var(--foam)">Catálogo</span></span>
+      </div>
+      <div class="loader__bar"><div class="loader__bar-fill" id="loaderFill"></div></div>
+      <div class="loader__pct" id="loaderPct">0%</div>
+      <p class="loader__tag">Cargando productos...</p>
+    </div>
+  </div>
+
+  <!-- ==================== BURBUJAS AMBIENTE ==================== -->
+  <div class="ambient" aria-hidden="true">
+    <span class="bub b1"></span><span class="bub b2"></span><span class="bub b3"></span>
+    <span class="bub b4"></span><span class="bub b5"></span><span class="bub b6"></span>
+    <span class="bub b7"></span><span class="bub b8"></span><span class="bub b9"></span>
+    <span class="bub b10"></span><span class="bub b11"></span><span class="bub b12"></span>
+    <span class="bub b13"></span><span class="bub b14"></span><span class="bub b15"></span>
+    <span class="bub b16"></span><span class="bub b17"></span><span class="bub b18"></span>
+  </div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="header scrolled" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo">
+        <span class="logo-fish">🐠</span>
+        <span class="logo-text">Acuario<strong>Martinez</strong></span>
+      </a>
+      <nav class="header__nav" id="mainNav">
+        <a href="index.html#inicio">Inicio</a>
+        <a href="index.html#caracteristicas">Nosotros</a>
+        <a href="catalogo.html" style="color:var(--foam)">Catálogo</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== BANNER ==================== -->
+  <div class="cat-banner">
+    <div class="cat-banner__content">
+      <nav class="cat-banner__breadcrumb" aria-label="Navegación">
+        <a href="index.html">Inicio</a>
+        <span>›</span>
+        <span style="color:white;font-weight:600">Catálogo</span>
+      </nav>
+      <h1 class="cat-banner__title">🐠 Nuestro Catálogo</h1>
+      <p class="cat-banner__sub">Peces, plantas y accesorios seleccionados con la mejor calidad.</p>
+    </div>
+    <div class="cat-banner__wave">
+      <svg viewBox="0 0 1440 70" preserveAspectRatio="none">
+        <path d="M0,35 C360,70 720,0 1080,35 C1260,52 1380,18 1440,35 L1440,70 L0,70 Z" fill="#f7feff"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ==================== CATÁLOGO ==================== -->
+  <section class="catalog section" id="catalogo">
+    <div class="container">
+
+      <!-- Estadísticas rápidas -->
+      <div class="cat-stats" id="catStats">
+        <div class="cat-stat">
+          <span class="cat-stat__icon">🐟</span>
+          <span class="cat-stat__num" id="totalProducts">—</span>
+          <span class="cat-stat__label">Productos</span>
+        </div>
+        <div class="cat-stat">
+          <span class="cat-stat__icon">📦</span>
+          <span class="cat-stat__num" id="totalCats">—</span>
+          <span class="cat-stat__label">Categorías</span>
+        </div>
+        <div class="cat-stat">
+          <span class="cat-stat__icon">✅</span>
+          <span class="cat-stat__num">100%</span>
+          <span class="cat-stat__label">Garantía</span>
+        </div>
+      </div>
+
+      <!-- Filtros -->
+      <div class="catalog__filters" id="filterButtons">
+        <button class="filter-btn active" data-category="all">🌊 Todos</button>
+      </div>
+
+      <!-- Búsqueda -->
+      <div class="catalog__search">
+        <input type="text" id="searchInput" placeholder="Buscar productos..." class="search-input" />
+        <span class="search-icon">🔍</span>
+      </div>
+
+      <!-- Contador de resultados -->
+      <p class="cat-results" id="catResults"></p>
+
+      <!-- Grid de productos -->
+      <div class="catalog__grid" id="productsGrid">
+        <div class="product-skeleton"></div><div class="product-skeleton"></div>
+        <div class="product-skeleton"></div><div class="product-skeleton"></div>
+        <div class="product-skeleton"></div><div class="product-skeleton"></div>
+        <div class="product-skeleton"></div><div class="product-skeleton"></div>
+      </div>
+
+      <div class="catalog__empty hidden" id="emptyState">
+        <div class="empty-icon">🔍</div>
+        <h3>No encontramos productos</h3>
+        <p>Intenta con otra categoría o término de búsqueda.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="header__logo">
+          <span class="logo-fish">🐠</span>
+          <span class="logo-text">Aqua<strong>Vida</strong></span>
+        </a>
+        <p>Tu tienda especializada en el mundo acuático. Pasión por los peces y la naturaleza acuática desde 2014.</p>
+      </div>
+      <div class="footer__links"><h4>Navegación</h4><ul>
+        <li><a href="index.html#inicio">Inicio</a></li>
+        <li><a href="index.html#caracteristicas">Nosotros</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><a href="index.html#contacto">Contacto</a></li>
+      </ul></div>
+      <div class="footer__links"><h4>Categorías</h4><ul id="footerCategories">
+        <li><a href="#">Peces Tropicales</a></li>
+        <li><a href="#">Plantas Acuáticas</a></li>
+        <li><a href="#">Accesorios</a></li>
+        <li><a href="#">Alimento</a></li>
+      </ul></div>
+      <div class="footer__social"><h4>Síguenos</h4>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook">📘</a>
+          <a href="#" class="social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="social-link" aria-label="TikTok">🎵</a>
+          <a href="#" class="social-link" aria-label="YouTube">▶️</a>
+        </div>
+        <p class="footer__note">Aceptamos pagos:<br />💳 Tarjeta / 💵 Efectivo / 📲 Transferencia</p>
+      </div>
+    </div>
+    <div class="footer__bottom"><div class="container">
+      <p>© <span id="currentYear"></span> AquaVida. Todos los derechos reservados.</p>
+      <p>Hecho con 💙 en México</p>
+    </div></div>
+  </footer>
+
+  <!-- ==================== MODAL APARTAR ==================== -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal__close" id="modalClose" aria-label="Cerrar">✕</button>
+      <div class="modal__header">
+        <h2 class="modal__title" id="modalTitle">🛒 Apartar Producto</h2>
+        <p class="modal__subtitle">Completa tus datos y te contactaremos por WhatsApp para confirmar.</p>
+      </div>
+      <div class="modal__product-preview" id="modalProductPreview"></div>
+      <form class="modal__form" id="reserveForm" novalidate>
+        <div class="form-group">
+          <label for="clienteName">Nombre completo *</label>
+          <input type="text" id="clienteName" name="clienteName" placeholder="Tu nombre" required autocomplete="name" />
+          <span class="form-error" id="nameError">Por favor ingresa tu nombre.</span>
+        </div>
+        <div class="form-group">
+          <label for="clientePhone">Teléfono / WhatsApp *</label>
+          <input type="tel" id="clientePhone" name="clientePhone" placeholder="10 dígitos" required autocomplete="tel" maxlength="10" />
+          <span class="form-error" id="phoneError">Ingresa un teléfono de 10 dígitos.</span>
+        </div>
+        <div class="form-group">
+          <label for="quantity">Cantidad *</label>
+          <input type="number" id="quantity" name="quantity" min="1" max="99" value="1" required />
+          <span class="form-error" id="qtyError">La cantidad debe ser al menos 1.</span>
+        </div>
+        <div class="form-group">
+          <label for="notes">Notas adicionales</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="¿Alguna pregunta sobre el producto?"></textarea>
+        </div>
+        <div class="modal__actions">
+          <button type="button" class="btn btn--outline" id="cancelBtn" style="color:var(--deep);border-color:rgba(0,0,0,.2)">Cancelar</button>
+          <button type="submit" class="btn btn--whatsapp" id="submitBtn">Enviar por WhatsApp</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- ==================== BURBUJA WHATSAPP ==================== -->
+  <a href="#" id="waBubble" class="wa-bubble" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+    <span class="wa-tip">¡Escríbenos!</span>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    /* === LOADER (más rápido: 1.5s) === */
+    (function() {
+      var loader = document.getElementById('loader');
+      var water  = document.getElementById('loaderWater');
+      var fill   = document.getElementById('loaderFill');
+      var pctEl  = document.getElementById('loaderPct');
+      if (!loader) return;
+      var pct = 0;
+      var STEPS = 1500 / 20;
+      var INC   = 100 / STEPS;
+      var t = setInterval(function() {
+        pct = Math.min(pct + INC, 100);
+        var p = Math.floor(pct);
+        water.style.height = p + '%';
+        fill.style.width   = p + '%';
+        pctEl.textContent  = p + '%';
+        if (pct >= 100) {
+          clearInterval(t);
+          setTimeout(function() {
+            loader.classList.add('loader--done');
+            document.body.classList.remove('loading');
+            document.body.classList.add('loaded');
+          }, 400);
+        }
+      }, 20);
+    })();
+
+    /* === WA BUBBLE === */
+    (function() {
+      var b = document.getElementById('waBubble');
+      if (b && typeof WHATSAPP_NUMBER !== 'undefined') b.href = 'https://wa.me/' + WHATSAPP_NUMBER;
+    })();
+
+    /* === HEADER siempre con clase scrolled en catálogo === */
+    window.addEventListener('scroll', function() {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 0);
+    }, { passive: true });
+
+    /* === CONTADOR DE RESULTADOS === */
+    (function() {
+      var orig = window.renderProducts;
+      // Esperamos a que app.js defina renderProducts y lo extendemos
+      var checkInterval = setInterval(function() {
+        var grid = document.getElementById('productsGrid');
+        var stats = document.getElementById('catResults');
+        if (!grid || !stats) return;
+        clearInterval(checkInterval);
+
+        var observer = new MutationObserver(function() {
+          var cards = grid.querySelectorAll('.product-card');
+          stats.textContent = cards.length > 0 ? 'Mostrando ' + cards.length + ' producto' + (cards.length !== 1 ? 's' : '') : '';
+        });
+        observer.observe(grid, { childList: true });
+      }, 200);
+    })();
+
+    /* === STATS DEL BANNER (rellena totales tras carga) === */
+    document.addEventListener('DOMContentLoaded', function() {
+      // Se actualiza cuando app.js termina de cargar datos
+      var checkData = setInterval(function() {
+        var cards = document.querySelectorAll('.product-card');
+        var filters = document.querySelectorAll('.filter-btn[data-dynamic]');
+        if (cards.length > 0) {
+          var tp = document.getElementById('totalProducts');
+          var tc = document.getElementById('totalCats');
+          if (tp) tp.textContent = cards.length + '+';
+          if (tc) tc.textContent = filters.length;
+          clearInterval(checkData);
+        }
+      }, 500);
+    });
+  </script>
+</body>
+</html>

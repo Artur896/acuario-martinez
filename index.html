@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acuario Martinez</title>
+  <meta name="description" content="Acuario Martinez - Tu tienda especializada en peces tropicales, plantas acuáticas y accesorios para acuario en México." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="shortcut icon" href="img/AM-logo.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body class="loading">
+
+  <!-- ==================== PANTALLA DE CARGA ==================== -->
+  <div id="loader" class="loader">
+    <div class="loader__rays">
+      <div class="lray lray-1"></div>
+      <div class="lray lray-2"></div>
+      <div class="lray lray-3"></div>
+    </div>
+
+    <div class="loader__content">
+      <div class="loader__tank-wrap">
+        <div class="loader__tank" id="loaderTank">
+          <div class="loader__glass-shine"></div>
+          <div class="loader__water" id="loaderWater">
+            <div class="lwave lwave-1"></div>
+            <div class="lwave lwave-2"></div>
+            <span class="tb tb1"></span><span class="tb tb2"></span>
+            <span class="tb tb3"></span><span class="tb tb4"></span>
+            <span class="tb tb5"></span><span class="tb tb6"></span>
+            <span class="lfish lfish-1">🐠</span>
+            <span class="lfish lfish-2">🐟</span>
+          </div>
+          <div class="loader__sand">
+            <span>🪸</span><span>🌿</span><span>🪸</span>
+          </div>
+        </div>
+        <div class="loader__stand"></div>
+      </div>
+
+      <div class="loader__brand">
+        <span class="loader__logo-fish">🐠</span>
+        <span>Acuario<strong>Martinez</strong></span>
+      </div>
+
+      <div class="loader__bar">
+        <div class="loader__bar-fill" id="loaderFill"></div>
+      </div>
+      <div class="loader__pct" id="loaderPct">0%</div>
+      <p class="loader__tag">Preparando tu mundo acuático...</p>
+    </div>
+  </div>
+
+  <!-- ==================== CAPA AMBIENTE ==================== -->
+  <div class="ambient" aria-hidden="true">
+    <span class="bub b1"></span><span class="bub b2"></span><span class="bub b3"></span>
+    <span class="bub b4"></span><span class="bub b5"></span><span class="bub b6"></span>
+    <span class="bub b7"></span><span class="bub b8"></span><span class="bub b9"></span>
+    <span class="bub b10"></span><span class="bub b11"></span><span class="bub b12"></span>
+    <span class="bub b13"></span><span class="bub b14"></span><span class="bub b15"></span>
+    <span class="bub b16"></span><span class="bub b17"></span><span class="bub b18"></span>
+    <!-- sin peces nadando fuera del hero -->
+  </div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#" class="header__logo">
+        <img src="img/AM-logo.png" alt="Acuario Martinez" class="header__logo-img" />
+      </a>
+      <nav class="header__nav" id="mainNav">
+        <a href="#inicio">Inicio</a>
+        <a href="#caracteristicas">Nosotros</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="inicio">
+    <div class="hero__rays" aria-hidden="true">
+      <div class="ray ray1"></div><div class="ray ray2"></div>
+      <div class="ray ray3"></div><div class="ray ray4"></div>
+      <div class="ray ray5"></div>
+    </div>
+    <div class="hero__particles" aria-hidden="true">
+      <span class="p p1"></span><span class="p p2"></span><span class="p p3"></span>
+      <span class="p p4"></span><span class="p p5"></span><span class="p p6"></span>
+      <span class="p p7"></span><span class="p p8"></span>
+    </div>
+    <div class="hero__seabed" aria-hidden="true">
+      <span class="sw sw1">🌿</span>
+      <span class="sw sw2">🌿</span>
+      <span class="sw sw3">🌿</span>
+      <span class="cdec cd1">🪸</span>
+      <span class="cdec cd2">🪸</span>
+    </div>
+    <div class="hero__overlay"></div>
+
+    <!-- peces decorativos del hero -->
+    <div class="hero__fish-deco" aria-hidden="true">
+      <!-- lado izquierdo → miran hacia la derecha (centro) -->
+      <img src="img/tiburoncin.png" class="hdeco hdeco-tib-l"  alt="" />
+      <img src="img/carpa.png"      class="hdeco hdeco-carpa-l" alt="" />
+      <!-- lado derecho → miran hacia la izquierda (centro) -->
+      <img src="img/nemo.png"  class="hdeco hdeco-nemo"  alt="" />
+      <img src="img/dory.png"  class="hdeco hdeco-dory"  alt="" />
+      <img src="img/tiburoncin.png" class="hdeco hdeco-tib-r"  alt="" />
+    </div>
+
+    <div class="hero__content container">
+      <span class="hero__badge rup">🌊 Tienda Especializada en México</span>
+      <h1 class="hero__title rup" style="--d:.1s">
+        Tu mundo<br /><em class="hero__em">acuático</em><br />comienza aquí
+      </h1>
+      <p class="hero__sub rup" style="--d:.2s">
+        Descubre peces tropicales exóticos, plantas acuáticas vibrantes y todo lo que necesitas para crear el acuario de tus sueños.
+      </p>
+      <div class="hero__actions rup" style="--d:.3s">
+        <a href="#catalogo" class="btn btn--primary btn--lg">🛒 Ver Catálogo</a>
+        <a href="#contacto" class="btn btn--outline btn--lg">💬 Contáctanos</a>
+      </div>
+      <div class="hero__stats rup" style="--d:.4s">
+        <div class="hstat"><span class="hstat__n" data-target="150">0</span><span>+</span><span class="hstat__l">Especies</span></div>
+        <div class="hstat"><span class="hstat__n" data-target="10">0</span><span>+</span><span class="hstat__l">Años exp.</span></div>
+        <div class="hstat"><span class="hstat__n" data-target="500">0</span><span>+</span><span class="hstat__l">Clientes</span></div>
+      </div>
+    </div>
+    <div class="hero__scroll-hint"><span>Explorar</span><div class="sarrow"></div></div>
+    <div class="hero__wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path d="M0,50 C240,100 480,0 720,50 C960,100 1200,0 1440,50 L1440,100 L0,100 Z" fill="white"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURES ==================== -->
+  <section class="features section" id="caracteristicas">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label rup">¿Por qué elegirnos?</span>
+        <h2 class="section-title rup" style="--d:.05s">Todo para tu acuario en un solo lugar</h2>
+        <p class="section-sub rup" style="--d:.1s">Somos especialistas con más de 10 años de experiencia ayudando a aficionados y coleccionistas a crear ecosistemas acuáticos increíbles.</p>
+      </div>
+      <div class="features__grid">
+        <div class="fcard rup" style="--d:0s">
+          <div class="fcard__glow"></div>
+          <div class="fcard__icon">🐟</div>
+          <h3>Peces Tropicales</h3>
+          <p>Amplia selección de peces de agua dulce y marina. Importados directamente y aclimatados con cuidado experto.</p>
+          <ul class="flist">
+            <li>Más de 150 especies disponibles</li>
+            <li>Garantía de aclimatación</li>
+            <li>Asesoría personalizada</li>
+          </ul>
+          <div class="fcard__shimmer"></div>
+        </div>
+        <div class="fcard rup" style="--d:.15s">
+          <div class="fcard__glow"></div>
+          <div class="fcard__icon">🌿</div>
+          <h3>Plantas Acuáticas</h3>
+          <p>Plantas vivas para aquascaping, desde principiantes hasta nivel avanzado. Mejoran el ecosistema de tu acuario.</p>
+          <ul class="flist">
+            <li>Plantas de bajo y alto mantenimiento</li>
+            <li>Sustratos especializados</li>
+            <li>Fertilizantes líquidos</li>
+          </ul>
+          <div class="fcard__shimmer"></div>
+        </div>
+        <div class="fcard rup" style="--d:.3s">
+          <div class="fcard__glow"></div>
+          <div class="fcard__icon">⚙️</div>
+          <h3>Accesorios</h3>
+          <p>Filtros, iluminación LED, calentadores, termómetros y todo el equipo que necesitas para mantener tu acuario perfecto.</p>
+          <ul class="flist">
+            <li>Marcas reconocidas</li>
+            <li>Soporte técnico</li>
+          </ul>
+          <div class="fcard__shimmer"></div>
+        </div>
+      </div>
+    </div>
+    <div class="sec-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,20 1440,40 L1440,80 L0,80 Z" fill="#e0f7ff"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ==================== CATALOGO ==================== -->
+  <section class="catalog section" id="catalogo">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label rup">Productos</span>
+        <h2 class="section-title rup" style="--d:.05s">Nuestro Catálogo</h2>
+        <p class="section-sub rup" style="--d:.1s">Productos seleccionados con la mejor calidad para ti y tu acuario.</p>
+      </div>
+      <div class="catalog__grid" id="productsGrid" data-limit="4">
+        <div class="product-skeleton"></div><div class="product-skeleton"></div>
+        <div class="product-skeleton"></div><div class="product-skeleton"></div>
+      </div>
+      <div class="catalog__empty hidden" id="emptyState">
+        <div class="empty-icon">🐠</div>
+        <h3>No hay productos disponibles</h3>
+        <p>Pronto tendremos novedades para ti.</p>
+      </div>
+      <div class="catalog__cta rup" style="--d:.2s">
+        <a href="catalogo.html" class="btn btn--primary btn--lg">🌊 Ver nuestro catálogo completo</a>
+      </div>
+    </div>
+    <div class="sec-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0,40 C360,0 720,80 1080,40 C1260,20 1380,60 1440,40 L1440,80 L0,80 Z" fill="#03045e"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACTO ==================== -->
+  <section class="contact section" id="contacto">
+    <div class="container">
+      <div class="contact__inner">
+        <div class="contact__info rup">
+          <span class="section-label" style="color:#90e0ef">Contáctanos</span>
+          <h2 class="section-title" style="color:white">¿Tienes dudas?<br />Estamos aquí para ayudarte</h2>
+          <p style="color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:28px">Visítanos en nuestra tienda o contáctanos por WhatsApp. Nuestros expertos están listos para asesorarte.</p>
+          <div class="contact__details">
+            <div class="citem"><span class="citem__icon">📍</span><div><strong>Dirección</strong><p>Calle Ejemplo #123, Col. Centro<br />Ciudad de México, CDMX</p></div></div>
+            <div class="citem"><span class="citem__icon">🕐</span><div><strong>Horario</strong><p>Lun - Vie: 10:00 - 19:00<br />Sáb - Dom: 10:00 - 17:00</p></div></div>
+            <div class="citem"><span class="citem__icon">📱</span><div><strong>WhatsApp</strong><p id="waPhone">Cargando...</p></div></div>
+          </div>
+        </div>
+        <div class="contact__cta rup" style="--d:.2s">
+          <div class="cta__icon">💬</div>
+          <h3>Chatea con nosotros</h3>
+          <p>¿Tienes preguntas sobre algún producto? Escríbenos directamente por WhatsApp.</p>
+          <a href="#" class="btn btn--whatsapp btn--lg" id="whatsappBtn"><span>Abrir WhatsApp</span></a>
+          <div class="cta__note"><span>⚡</span> Respuesta en menos de 1 hora en horario de tienda</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#" class="header__logo"><img src="img/AM-logo.png" alt="Acuario Martinez" class="header__logo-img" /></a>
+        <p>Tu tienda especializada en el mundo acuático. Pasión por los peces y la naturaleza acuática desde 2014.</p>
+      </div>
+      <div class="footer__links"><h4>Navegación</h4><ul>
+        <li><a href="#inicio">Inicio</a></li><li><a href="#caracteristicas">Nosotros</a></li>
+        <li><a href="#catalogo">Catálogo</a></li><li><a href="#contacto">Contacto</a></li>
+      </ul></div>
+      <div class="footer__links"><h4>Categorías</h4><ul id="footerCategories">
+        <li><a href="#catalogo">Peces Tropicales</a></li><li><a href="#catalogo">Plantas Acuáticas</a></li>
+        <li><a href="#catalogo">Accesorios</a></li><li><a href="#catalogo">Alimento</a></li>
+      </ul></div>
+      <div class="footer__social"><h4>Síguenos</h4>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook">📘</a>
+          <a href="#" class="social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="social-link" aria-label="TikTok">🎵</a>
+          <a href="#" class="social-link" aria-label="YouTube">▶️</a>
+        </div>
+        <p class="footer__note">Aceptamos pagos:<br />💳 Tarjeta / 💵 Efectivo / 📲 Transferencia</p>
+      </div>
+    </div>
+    <div class="footer__bottom"><div class="container">
+      <p>© <span id="currentYear"></span> Acuario Martinez. Todos los derechos reservados.</p>
+      <p>Hecho con 💙 en México</p>
+    </div></div>
+  </footer>
+
+  <!-- ==================== MODAL APARTAR ==================== -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal__close" id="modalClose" aria-label="Cerrar">✕</button>
+      <div class="modal__header">
+        <h2 class="modal__title" id="modalTitle">🛒 Apartar Producto</h2>
+        <p class="modal__subtitle">Completa tus datos y te contactaremos por WhatsApp para confirmar.</p>
+      </div>
+      <div class="modal__product-preview" id="modalProductPreview"></div>
+      <form class="modal__form" id="reserveForm" novalidate>
+        <div class="form-group">
+          <label for="clienteName">Nombre completo *</label>
+          <input type="text" id="clienteName" name="clienteName" placeholder="Tu nombre" required autocomplete="name" />
+          <span class="form-error" id="nameError">Por favor ingresa tu nombre.</span>
+        </div>
+        <div class="form-group">
+          <label for="clientePhone">Teléfono / WhatsApp *</label>
+          <input type="tel" id="clientePhone" name="clientePhone" placeholder="10 dígitos" required autocomplete="tel" maxlength="10" />
+          <span class="form-error" id="phoneError">Ingresa un teléfono de 10 dígitos.</span>
+        </div>
+        <div class="form-group">
+          <label for="quantity">Cantidad *</label>
+          <input type="number" id="quantity" name="quantity" min="1" max="99" value="1" required />
+          <span class="form-error" id="qtyError">La cantidad debe ser al menos 1.</span>
+        </div>
+        <div class="form-group">
+          <label for="notes">Notas adicionales</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="¿Alguna pregunta sobre el producto?"></textarea>
+        </div>
+        <div class="modal__actions">
+          <button type="button" class="btn btn--outline" id="cancelBtn">Cancelar</button>
+          <button type="submit" class="btn btn--whatsapp" id="submitBtn">Enviar por WhatsApp</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- ==================== BURBUJA WHATSAPP ==================== -->
+  <a href="#" id="waBubble" class="wa-bubble" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+    <span class="wa-tip">¡Escríbenos!</span>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    /* === WA BUBBLE === */
+    (function() {
+      var b = document.getElementById('waBubble');
+      if (b && typeof WHATSAPP_NUMBER !== 'undefined') b.href = 'https://wa.me/' + WHATSAPP_NUMBER;
+    })();
+
+    /* === LOADER === */
+    (function () {
+      const loader   = document.getElementById('loader');
+      const water    = document.getElementById('loaderWater');
+      const fill     = document.getElementById('loaderFill');
+      const pctEl    = document.getElementById('loaderPct');
+      let pct = 0;
+      const STEPS = 2800 / 30;
+      const INC   = 100 / STEPS;
+      const t = setInterval(function () {
+        pct = Math.min(pct + INC, 100);
+        const p = Math.floor(pct);
+        water.style.height = p + '%';
+        fill.style.width   = p + '%';
+        pctEl.textContent  = p + '%';
+        if (pct >= 100) {
+          clearInterval(t);
+          setTimeout(function () {
+            loader.classList.add('loader--done');
+            document.body.classList.add('loaded');
+            document.body.classList.remove('loading');
+          }, 600);
+        }
+      }, 30);
+    })();
+
+    /* === SCROLL REVEAL === */
+    (function () {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in-view'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.rup').forEach(function (el) { obs.observe(el); });
+    })();
+
+    /* === STAT COUNTERS === */
+    (function () {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var el = e.target, target = +el.dataset.target, cur = 0, step = target / 60;
+          var t = setInterval(function () {
+            cur = Math.min(cur + step, target);
+            el.textContent = Math.floor(cur);
+            if (cur >= target) clearInterval(t);
+          }, 20);
+          obs.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('.hstat__n').forEach(function (el) { obs.observe(el); });
+    })();
+
+    /* === HEADER === */
+    window.addEventListener('scroll', function () {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+  </script>
+</body>
+</html>

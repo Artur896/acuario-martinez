@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acuario Martinez - Panel de Control</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body class="login-page" id="bodyEl">
+
+  <!-- ===== LOGIN SCREEN ===== -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="login-logo">
+        <span class="logo-icon">🐠</span>
+        <span>Acuario<strong>Martinez</strong></span>
+      </div>
+      <h1 class="login-title">Panel de Administración</h1>
+      <p class="login-subtitle">Ingresa tus credenciales para continuar</p>
+
+      <div class="login-alert hidden" id="loginAlert"></div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginEmail">Correo electrónico</label>
+          <input type="email" id="loginEmail" placeholder="admin@aquavida.mx" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Contraseña</label>
+          <div class="password-wrap">
+            <input type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password" />
+            <button type="button" class="toggle-pw" id="togglePw" aria-label="Mostrar contraseña">👁</button>
+          </div>
+        </div>
+        <button type="submit" class="btn-login" id="loginBtn">
+          <span id="loginBtnText">Iniciar sesión</span>
+          <span class="spinner hidden" id="loginSpinner"></span>
+        </button>
+      </form>
+      <a href="../" class="login-back">← Volver a la tienda</a>
+    </div>
+  </div>
+
+  <!-- ===== ADMIN PANEL (hidden until login) ===== -->
+  <div class="admin-layout hidden" id="adminPanel">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__header">
+        <div class="sidebar__logo">
+          <span>🐠</span>
+          <div>
+            <span class="sidebar__logo-text">Acuario Martinez</span>
+            <span class="sidebar__logo-sub">Admin Panel</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a href="#" class="nav-item active" data-tab="dashboard">
+          <span class="nav-item__icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="products">
+          <span class="nav-item__icon">🐟</span>
+          <span>Productos</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="add-product">
+          <span class="nav-item__icon">➕</span>
+          <span>Agregar Producto</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="orders">
+          <span class="nav-item__icon">📋</span>
+          <span>Pedidos / Apartados</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="categories">
+          <span class="nav-item__icon">🏷️</span>
+          <span>Categorías</span>
+        </a>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="sidebar__user" id="sidebarUser">
+          <span class="user-avatar">👤</span>
+          <div class="user-info">
+            <span class="user-name" id="userEmail">usuario@admin.com</span>
+            <span class="user-role">Administrador</span>
+          </div>
+        </div>
+        <button class="btn-logout" id="logoutBtn">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <div class="admin-topbar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
+        <div class="topbar-title" id="topbarTitle">Dashboard</div>
+        <div class="topbar-actions">
+          <a href="../" target="_blank" class="btn-link">Ver tienda →</a>
+        </div>
+      </div>
+
+      <!-- ===== TAB: DASHBOARD ===== -->
+      <div class="tab-content active" id="tab-dashboard">
+        <div class="page-header">
+          <h2>Dashboard</h2>
+          <p>Resumen general de tu tienda AquaVida</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card stat-card--blue">
+            <div class="stat-card__icon">🐟</div>
+            <div class="stat-card__info">
+              <span class="stat-card__value" id="statProducts">—</span>
+              <span class="stat-card__label">Productos activos</span>
+            </div>
+          </div>
+          <div class="stat-card stat-card--teal">
+            <div class="stat-card__icon">📋</div>
+            <div class="stat-card__info">
+              <span class="stat-card__value" id="statOrders">—</span>
+              <span class="stat-card__label">Pedidos recibidos</span>
+            </div>
+          </div>
+          <div class="stat-card stat-card--green">
+            <div class="stat-card__icon">🏷️</div>
+            <div class="stat-card__info">
+              <span class="stat-card__value" id="statCategories">—</span>
+              <span class="stat-card__label">Categorías</span>
+            </div>
+          </div>
+          <div class="stat-card stat-card--purple">
+            <div class="stat-card__icon">⏳</div>
+            <div class="stat-card__info">
+              <span class="stat-card__value" id="statPending">—</span>
+              <span class="stat-card__label">Pedidos pendientes</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="recent-section">
+          <h3>Pedidos recientes</h3>
+          <div class="table-wrap" id="recentOrdersWrap">
+            <div class="loading-row">Cargando pedidos...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== TAB: PRODUCTS ===== -->
+      <div class="tab-content" id="tab-products">
+        <div class="page-header">
+          <h2>Productos</h2>
+          <p>Gestiona todos los productos de tu catálogo</p>
+          <button class="btn btn-primary" data-tab-link="add-product">+ Agregar producto</button>
+        </div>
+        <div class="toolbar">
+          <input type="text" class="search-input" id="productSearch" placeholder="Buscar productos..." />
+          <select class="select-input" id="categoryFilter">
+            <option value="">Todas las categorías</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="productsTable">
+            <thead>
+              <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody">
+              <tr><td colspan="6" class="loading-row">Cargando productos...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== TAB: ADD/EDIT PRODUCT ===== -->
+      <div class="tab-content" id="tab-add-product">
+        <div class="page-header">
+          <h2 id="productFormTitle">Agregar Producto</h2>
+          <p>Completa la información del producto</p>
+        </div>
+        <div class="form-card">
+          <form id="productForm" novalidate>
+            <input type="hidden" id="editProductId" />
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="prodNombre">Nombre del producto *</label>
+                <input type="text" id="prodNombre" placeholder="Ej: Guppy Arcoíris" required />
+              </div>
+              <div class="form-group">
+                <label for="prodCategoria">Categoría *</label>
+                <select id="prodCategoria" required>
+                  <option value="">-- Selecciona --</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="prodPrecio">Precio (MXN) *</label>
+                <input type="number" id="prodPrecio" min="0" step="0.01" placeholder="0.00" required />
+              </div>
+              <div class="form-group">
+                <label for="prodActivo">Estado</label>
+                <select id="prodActivo">
+                  <option value="true">Activo (visible en tienda)</option>
+                  <option value="false">Inactivo (oculto)</option>
+                </select>
+              </div>
+              <div class="form-group full-width">
+                <label for="prodDescripcion">Descripción</label>
+                <textarea id="prodDescripcion" rows="3" placeholder="Describe el producto..."></textarea>
+              </div>
+
+              <!-- Image Upload -->
+              <div class="form-group full-width">
+                <label>Imagen del producto</label>
+                <div class="image-upload-area" id="imageUploadArea">
+                  <input type="file" id="prodImagen" accept="image/*" class="file-input" />
+                  <div class="upload-placeholder" id="uploadPlaceholder">
+                    <span class="upload-icon">🖼️</span>
+                    <p>Haz clic o arrastra una imagen aquí</p>
+                    <span class="upload-hint">PNG, JPG, WebP hasta 5 MB</span>
+                  </div>
+                  <div class="image-preview hidden" id="imagePreview">
+                    <img id="previewImg" src="" alt="Preview" />
+                    <button type="button" class="remove-img-btn" id="removeImgBtn">✕ Quitar imagen</button>
+                  </div>
+                </div>
+                <div class="form-group" style="margin-top:0.75rem">
+                  <label for="prodImagenUrl">O ingresa URL de imagen</label>
+                  <input type="url" id="prodImagenUrl" placeholder="https://..." />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" id="cancelEditBtn">Cancelar</button>
+              <button type="submit" class="btn btn-primary" id="saveProductBtn">
+                <span id="saveBtnText">Guardar producto</span>
+                <span class="spinner hidden" id="saveSpinner"></span>
+              </button>
+            </div>
+
+            <div class="form-alert hidden" id="productFormAlert"></div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ===== TAB: ORDERS ===== -->
+      <div class="tab-content" id="tab-orders">
+        <div class="page-header">
+          <h2>Pedidos / Apartados</h2>
+          <p>Todos los apartados recibidos desde la tienda</p>
+          <div class="page-header__filters">
+            <select class="select-input" id="orderStatusFilter">
+              <option value="">Todos los estados</option>
+              <option value="pendiente">Pendientes</option>
+              <option value="confirmado">Confirmados</option>
+              <option value="entregado">Entregados</option>
+              <option value="cancelado">Cancelados</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="ordersTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Cliente</th>
+                <th>Teléfono</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <tr><td colspan="8" class="loading-row">Cargando pedidos...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== TAB: CATEGORIES ===== -->
+      <div class="tab-content" id="tab-categories">
+        <div class="page-header">
+          <h2>Categorías</h2>
+          <p>Administra las categorías de productos</p>
+        </div>
+        <div class="two-col-layout">
+          <!-- Add category form -->
+          <div class="form-card form-card--sm">
+            <h3 id="catFormTitle">Nueva Categoría</h3>
+            <form id="categoryForm" novalidate>
+              <input type="hidden" id="editCatId" />
+              <div class="form-group">
+                <label for="catNombre">Nombre de la categoría *</label>
+                <input type="text" id="catNombre" placeholder="Ej: Peces Tropicales" required />
+              </div>
+              <div class="form-group">
+                <label for="catDescripcion">Descripción</label>
+                <textarea id="catDescripcion" rows="2" placeholder="Descripción breve..."></textarea>
+              </div>
+              <div class="form-actions">
+                <button type="button" class="btn btn-secondary hidden" id="cancelCatBtn">Cancelar</button>
+                <button type="submit" class="btn btn-primary">
+                  <span id="catBtnText">Agregar categoría</span>
+                </button>
+              </div>
+              <div class="form-alert hidden" id="catFormAlert"></div>
+            </form>
+          </div>
+
+          <!-- Categories list -->
+          <div class="table-wrap">
+            <table class="data-table" id="categoriesTable">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+                  <th>Productos</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="categoriesTableBody">
+                <tr><td colspan="4" class="loading-row">Cargando categorías...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div><!-- /admin-layout -->
+
+  <!-- ===== CONFIRM DIALOG ===== -->
+  <div class="dialog-overlay hidden" id="confirmDialog">
+    <div class="dialog">
+      <h3 id="dialogTitle">¿Estás seguro?</h3>
+      <p id="dialogMessage">Esta acción no se puede deshacer.</p>
+      <div class="dialog__actions">
+        <button class="btn btn-secondary" id="dialogCancel">Cancelar</button>
+        <button class="btn btn-danger" id="dialogConfirm">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
