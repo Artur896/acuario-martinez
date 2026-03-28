@@ -89,6 +89,7 @@
             <span class="user-role">Administrador</span>
           </div>
         </div>
+        <button class="btn-change-pw" id="changePasswordBtn">🔑 Cambiar contraseña</button>
         <button class="btn-logout" id="logoutBtn">Cerrar sesión</button>
       </div>
     </aside>
@@ -338,6 +339,38 @@
 
     </main>
   </div><!-- /admin-layout -->
+
+  <!-- ===== CHANGE PASSWORD MODAL ===== -->
+  <div class="dialog-overlay hidden" id="changePasswordDialog">
+    <div class="dialog">
+      <h3>Cambiar contraseña</h3>
+      <p>Ingresa y confirma tu nueva contraseña (mínimo 8 caracteres).</p>
+      <form id="changePasswordForm" novalidate>
+        <div class="form-group" style="margin-bottom:1rem">
+          <label for="newPassword">Nueva contraseña</label>
+          <div class="password-wrap">
+            <input type="password" id="newPassword" placeholder="••••••••" required autocomplete="new-password" />
+            <button type="button" class="toggle-pw" id="toggleNewPw" aria-label="Mostrar contraseña">👁</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirmar contraseña</label>
+          <div class="password-wrap">
+            <input type="password" id="confirmPassword" placeholder="••••••••" required autocomplete="new-password" />
+            <button type="button" class="toggle-pw" id="toggleConfirmPw" aria-label="Mostrar contraseña">👁</button>
+          </div>
+        </div>
+        <div class="form-alert hidden" id="changePwAlert"></div>
+        <div class="dialog__actions" style="margin-top:1.5rem">
+          <button type="button" class="btn btn-secondary" id="cancelChangePwBtn">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="changePwBtn">
+            <span id="changePwBtnText">Guardar</span>
+            <span class="spinner hidden" id="changePwSpinner"></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- ===== CONFIRM DIALOG ===== -->
   <div class="dialog-overlay hidden" id="confirmDialog">

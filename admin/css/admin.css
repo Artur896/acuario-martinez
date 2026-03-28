@@ -256,6 +256,20 @@ body.admin-body { background: var(--gray-50); overflow: auto; }
   transition: all var(--transition);
 }
 .btn-logout:hover { background: var(--danger); color: var(--white); }
+.btn-change-pw {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 0.5rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-sm);
+  color: rgba(255,255,255,0.7);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.btn-change-pw:hover { background: rgba(255,255,255,0.1); color: var(--white); }
 
 /* ---- Main Area ---- */
 .admin-main {

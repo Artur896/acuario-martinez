@@ -135,6 +135,7 @@ function enterAdminPanel() {
   initCategoryForm();
   initOrderFilter();
   initConfirmDialog();
+  initChangePassword();
   loadDashboard();
 
   document.getElementById('logoutBtn')?.addEventListener('click', handleLogout);
@@ -858,6 +859,88 @@ function statusBadge(status) {
 
 function capitalize(str) {
   return str ? str.charAt(0).toUpperCase() + str.slice(1) : str;
+}
+
+// ============================================================
+//  CHANGE PASSWORD
+// ============================================================
+function initChangePassword() {
+  const openBtn      = document.getElementById('changePasswordBtn');
+  const dialog       = document.getElementById('changePasswordDialog');
+  const cancelBtn    = document.getElementById('cancelChangePwBtn');
+  const form         = document.getElementById('changePasswordForm');
+  const newPwInput   = document.getElementById('newPassword');
+  const confPwInput  = document.getElementById('confirmPassword');
+  const toggleNewPw  = document.getElementById('toggleNewPw');
+  const toggleConfPw = document.getElementById('toggleConfirmPw');
+
+  toggleNewPw?.addEventListener('click', () => {
+    const isText = newPwInput.type === 'text';
+    newPwInput.type = isText ? 'password' : 'text';
+    toggleNewPw.textContent = isText ? '👁' : '🙈';
+  });
+
+  toggleConfPw?.addEventListener('click', () => {
+    const isText = confPwInput.type === 'text';
+    confPwInput.type = isText ? 'password' : 'text';
+    toggleConfPw.textContent = isText ? '👁' : '🙈';
+  });
+
+  openBtn?.addEventListener('click', () => {
+    form.reset();
+    const alertEl = document.getElementById('changePwAlert');
+    alertEl.textContent = '';
+    alertEl.className = 'form-alert hidden';
+    dialog.classList.remove('hidden');
+  });
+
+  const closeDialog = () => dialog.classList.add('hidden');
+  cancelBtn?.addEventListener('click', closeDialog);
+  dialog?.addEventListener('click', e => { if (e.target === dialog) closeDialog(); });
+
+  form?.addEventListener('submit', handleChangePassword);
+}
+
+async function handleChangePassword(e) {
+  e.preventDefault();
+  const newPassword  = document.getElementById('newPassword').value;
+  const confPassword = document.getElementById('confirmPassword').value;
+  const alertEl      = document.getElementById('changePwAlert');
+  const btn          = document.getElementById('changePwBtn');
+  const btnText      = document.getElementById('changePwBtnText');
+  const spinner      = document.getElementById('changePwSpinner');
+
+  const showAlert = (msg, success = false) => {
+    alertEl.textContent = msg;
+    alertEl.className = `form-alert${success ? ' success' : ''}`;
+  };
+
+  if (newPassword.length < 8) {
+    showAlert('La contraseña debe tener al menos 8 caracteres.');
+    return;
+  }
+  if (newPassword !== confPassword) {
+    showAlert('Las contraseñas no coinciden.');
+    return;
+  }
+
+  btn.disabled = true;
+  btnText.textContent = 'Guardando...';
+  spinner.classList.remove('hidden');
+
+  try {
+    const { error } = await _sb.auth.updateUser({ password: newPassword });
+    if (error) throw error;
+    showAlert('Contraseña actualizada correctamente.', true);
+    showToast('Contraseña actualizada.');
+    setTimeout(() => document.getElementById('changePasswordDialog').classList.add('hidden'), 1800);
+  } catch (err) {
+    showAlert(`Error: ${err.message}`);
+  } finally {
+    btn.disabled = false;
+    btnText.textContent = 'Guardar';
+    spinner.classList.add('hidden');
+  }
 }
 
 function escHtml(str) {
